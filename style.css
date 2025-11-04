@@ -1,25 +1,50 @@
 body {
+  background-color: #a0e7ff;
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #1e1e1e;
-  color: white;
 }
 
-#game-area {
+#tank {
   position: relative;
-  width: 400px;
-  height: 400px;
-  margin: 30px auto;
-  background-color: #333;
-  border-radius: 10px;
+  width: 500px;
+  height: 300px;
+  margin: 20px auto;
+  background: linear-gradient(to bottom, #74d4ff, #0099cc);
+  border-radius: 15px;
   overflow: hidden;
+  border: 5px solid #006f94;
 }
 
-#box {
+#fish {
   position: absolute;
-  width: 50px;
-  height: 50px;
-  background-color: #61dafb;
-  border-radius: 10px;
+  width: 60px;
+  height: 30px;
+  background-color: orange;
+  border-radius: 50% 50% 50% 50%;
+  animation: swim 5s infinite linear;
+}
+
+@keyframes swim {
+  0% { left: 0; top: 50px; transform: scaleX(1); }
+  50% { left: 440px; top: 150px; transform: scaleX(1); }
+  51% { transform: scaleX(-1); }
+  100% { left: 0; top: 50px; transform: scaleX(-1); }
+}
+
+#feed-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0078d7;
+  color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+}
+
+#feed-btn:hover {
+  background-color: #005fa3;
+}
+
+#hunger {
+  font-weight: bold;
 }
