@@ -1,19 +1,35 @@
-const box = document.getElementById('box');
-const scoreDisplay = document.getElementById('score');
-let score = 0;
+const hungerDisplay = document.getElementById('hunger');
+const feedBtn = document.getElementById('feed-btn');
+const fish = document.getElementById('fish');
 
-function moveBox() {
-  const area = document.getElementById('game-area');
-  const x = Math.random() * (area.clientWidth - 50);
-  const y = Math.random() * (area.clientHeight - 50);
-  box.style.left = x + 'px';
-  box.style.top = y + 'px';
-}
+let hunger = 100;
 
-box.addEventListener('click', () => {
-  score++;
-  scoreDisplay.textContent = score;
-  moveBox();
+// Decrease hunger every second
+setInterval(() => {
+  hunger -= 2;
+  if (hunger < 0) hunger = 0;
+  updateFish();
+}, 1000);
+
+// Feed button increases hunger
+feedBtn.addEventListener('click', () => {
+  hunger += 20;
+  if (hunger > 100) hunger = 100;
+  updateFish();
 });
 
-moveBox();
+function updateFish() {
+  hungerDisplay.textContent = hunger;
+
+  if (hunger > 70) {
+    fish.style.backgroundColor = 'orange'; // happy
+    fish.style.width = '70px';
+  } else if (hunger > 30) {
+    fish.style.backgroundColor = 'gold'; // okay
+    fish.style.width = '60px';
+  } else {
+    fish.style.backgroundColor = 'gray'; // sad
+    fish.style.width = '50px';
+  }
+}
+
